@@ -1,0 +1,41 @@
+AddDefaultCharset utf8
+Options -Indexes
+RewriteEngine on
+RewriteBase /
+php_flag display_errors off
+
+RewriteRule ^cat/([0-9]+)/?$ scatalog.php?id_category=$1
+RewriteRule ^cat/([0-9]+)/page/([0-9]+)/?$ scatalog.php?id_category=$1&page=$2
+RewriteRule ^cat/([0-9]+)/item/([0-9]+)/?$ scatalog.php?id_category=$1&item=$2
+RewriteRule ^cat/([0-9]+)/item/([0-9]+)/add_to_cart/?$ scatalog.php?id_category=$1&item=$2&actions=add_to_cart
+RewriteRule ^cart/?$ sbuy.php
+RewriteRule ^cart/drop_id/([0-9]+)/?$ sbuy.php?actions=drop_id&id_pos_in_sess=$1
+RewriteRule ^cart/clear_cart/?$ sbuy.php?actions=clear_cart
+RewriteRule ^cart/buy/?$ sbuy.php?actions=buy
+RewriteRule ^cart/buy/send/?$ sbuy.php?actions=buy&op=send
+
+RewriteRule ^search/?$ ssearch.php
+
+RewriteRule ^enter/?$ sadmin.php
+
+
+RewriteRule ^admin/catalog/?$ sadmin.php?action=catalog
+RewriteRule ^admin/catalog/category/([0-9]+)/page/([0-9]+)/?$ sadmin.php?action=catalog&op=category&go=show&id=$1&page=$2
+RewriteRule ^admin/catalog/category/([0-9]+)/?$ sadmin.php?action=catalog&op=category&go=show&id=$1
+RewriteRule ^admin/catalog/category/new/?$ sadmin.php?action=catalog&op=category&go=new
+RewriteRule ^admin/catalog/category/([0-9]+)/edit/?$ sadmin.php?action=catalog&op=category&go=edit&id=$1
+RewriteRule ^admin/catalog/category/([0-9]+)/edit/drop_img/?$ sadmin.php?action=catalog&op=category&go=edit&id=$1&img=drop_img
+RewriteRule ^admin/catalog/category/([0-9]+)/drop/?$ sadmin.php?action=catalog&op=category&go=drop&id=$1
+RewriteRule ^admin/catalog/category/([0-9]+)/item/new/?$ sadmin.php?action=catalog&op=category&go=show&id=$1&item=new
+RewriteRule ^admin/catalog/category/([0-9]+)/item/([0-9]+)/edit/?$ sadmin.php?action=catalog&op=category&go=show&id=$1&item=edit&item_id=$2
+RewriteRule ^admin/catalog/category/([0-9]+)/item/([0-9]+)/drop/?$ sadmin.php?action=catalog&op=category&go=show&id=$1&item=drop&item_id=$2
+
+RewriteRule ^admin/zakaz/?$ sadmin.php?action=zakaz
+RewriteRule ^admin/zakaz/([0-9]+)/yes/?$ sadmin.php?action=zakaz&op=yes&tovar_id=$1
+RewriteRule ^admin/zakaz/([0-9]+)/drop/?$ sadmin.php?action=zakaz&op=drop&tovar_id=$1
+
+RewriteRule ^admin/polzovateli/?$ sadmin.php?action=polzovateli
+
+RewriteRule ^admin/archives/?$ sadmin.php?action=archives
+RewriteRule ^admin/archives/([0-9]+)/drop/?$ sadmin.php?action=archives&op=drop&tovar_id=$1
+RewriteRule ^admin/archives/page/([0-9]+)/?$ sadmin.php?action=archives&page=$1
